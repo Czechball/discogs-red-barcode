@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DISCOGS_TOKEN="your_token_here"
+RED_API_KEY="your_key_here"
