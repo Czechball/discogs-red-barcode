@@ -137,6 +137,7 @@ red_query()
 				else
 					echo -e "\e[92mRelease found on RED: https://redacted.ch/torrents.php?id=$GROUP_ID\e[0m"
 				fi
+			else
 
 				# When only search result containing just the release name succeeds, also perform search for requests
 				# (Search for requests is also performed when no results are found)
@@ -147,7 +148,15 @@ red_query()
 				if [[ $NUM_RESULTS -gt 0 ]]; then
 					echo -e "\e[92mFound $NUM_RESULTS requests: https://redacted.ch/requests.php?&search=$RELEASE_ARTIST $RELEASE_TITLE\e[0m"
 				else
-					echo "Couldn't find any requests"
+					sleep 2
+					RED_JSON=$(curl -s "https://redacted.ch/ajax.php?action=requests&search=$RELEASE_TITLE" -H "Authorization: $RED_API_KEY")
+					NUM_RESULTS=$(echo "$RED_JSON" | jq '.response.results[].requestId' | wc -l)
+					if [[ $NUM_RESULTS -gt 0 ]]; then
+						echo -e "\e[92mFound $NUM_RESULTS requests: https://redacted.ch/requests.php?&search=$RELEASE_TITLE\e[0m"
+					else
+						echo "Couldn't find any requests"
+					fi
+					
 				fi
 			fi
 		fi
