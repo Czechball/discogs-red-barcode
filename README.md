@@ -1,5 +1,7 @@
 # discogs-red-barcode
 
+A small (?) bash script that takes a barcode, searches it on Discogs, parses the results and searches them on RED to find groups or requests.
+
 # Requirements
 
 * jq
