@@ -6,7 +6,7 @@ A small (?) bash script that takes a barcode, searches it on Discogs, parses the
 
 * jq
 
-* Discogs and RED API keys
+* Discogs and RED API keys  
 You can retrieve a Discogs personal access token here: https://www.discogs.com/settings/developers
 
 # Usage
